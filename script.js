@@ -11,10 +11,10 @@ map.on("load", () => {
   // Add a data source containing GeoJSON data
   map.addSource("cafe-data", {
     type: "geojson",
-    data: ,
+    data: "https://raw.githubusercontent.com/JessicaCHuang26/Lab-2-Webmap/main/cafe-map.geojson",
   });
   // Visualize data layer on map
-  map.addLayer({
+  https: map.addLayer({
     id: "cafe-point",
     type: "circle",
     source: "cafe-data",
