@@ -14,7 +14,7 @@ map.on("load", () => {
     data: "https://raw.githubusercontent.com/JessicaCHuang26/Lab-2-Webmap/main/cafe-map.geojson",
   });
   // Visualize data layer on map
-  https: map.addLayer({
+  map.addLayer({
     id: "cafe-point",
     type: "circle",
     source: "cafe-data",
