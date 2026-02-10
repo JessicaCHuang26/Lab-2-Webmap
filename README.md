@@ -1,6 +1,8 @@
-# Lab 2 Webmap (Toronto Study Cafés)
+# Lab 2 Web Map (Toronto Study Cafés)
 
 This interactive web map is built using Mapbox GL JS. It showcases some of my favourite study cafés near the University of Toronto St. George Campus. The map also includes nearby TTC subway stations to help users explore café options that are easily accessible by public transit. In addition, a suggested café trail/route is provided for users who would like to visit multiple cafés in one trip.
+
+The basemap of this web map is created using Mapbox styles. Here is the link to the style: mapbox://styles/jessicahuang/cmle4jgcc00dv01qqd84hg94o
 
 The web map contains three GeoJSON data layers:
 
