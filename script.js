@@ -16,12 +16,12 @@ map.on("load", () => {
   // Add cafe feature data source
   map.addSource("cafe-data", {
     type: "geojson",
-    data: "https://raw.githubusercontent.com/JessicaCHuang26/Lab-2-Webmap/main/cafe-point.geojson",
+    data: "https://raw.githubusercontent.com/JessicaCHuang26/Lab-2-Webmap/main/data/cafe-point.geojson",
   });
 
   // Load image for cafe feature symbology
   map.loadImage(
-    "https://raw.githubusercontent.com/JessicaCHuang26/Lab-2-Webmap/main/coffee.webp",
+    "https://raw.githubusercontent.com/JessicaCHuang26/Lab-2-Webmap/main/data/coffee.webp",
     (error, image) => {
       if (error) throw error;
 
@@ -101,7 +101,7 @@ map.on("load", () => {
 
   map.addSource("subway-data", {
     type: "geojson",
-    data: "https://raw.githubusercontent.com/JessicaCHuang26/Lab-2-Webmap/main/TTC-Near_Campus.geojson",
+    data: "https://raw.githubusercontent.com/JessicaCHuang26/Lab-2-Webmap/main/data/TTC-Near_Campus.geojson",
   });
   // Visualize data layer on map
   map.addLayer({
@@ -135,7 +135,7 @@ map.on("load", () => {
 
   map.addSource("cafe-route-data", {
     type: "geojson",
-    data: "https://raw.githubusercontent.com/JessicaCHuang26/Lab-2-Webmap/main/cafe-route.geojson",
+    data: "https://raw.githubusercontent.com/JessicaCHuang26/Lab-2-Webmap/main/data/cafe-route.geojson",
   });
   // Visualize data layer on map
   map.addLayer({
