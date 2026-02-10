@@ -23,4 +23,19 @@ map.on("load", () => {
       "circle-color": "#B42222",
     },
   });
+
+  map.addSource("subway-data", {
+    type: "geojson",
+    data: "TTC-Near-UofT-Campus.geojson",
+  });
+  // Visualize data layer on map
+  map.addLayer({
+    id: "subway-point",
+    type: "circle",
+    source: "cafe-subway",
+    paint: {
+      "circle-radius": 6,
+      "circle-color": "#000209",
+    },
+  });
 });
