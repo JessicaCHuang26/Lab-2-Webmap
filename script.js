@@ -1,38 +1,41 @@
+// add Mapbox token
 mapboxgl.accessToken =
-  "pk.eyJ1IjoiamVzc2ljYWh1YW5nIiwiYSI6ImNtazNjNmdmeTBkN3AzZnEyZHRscHdod28ifQ.Pa9LhzBk1H75KBMwBngDjA"; // Add default public map token from your Mapbox account
+  "pk.eyJ1IjoiamVzc2ljYWh1YW5nIiwiYSI6ImNtazNjNmdmeTBkN3AzZnEyZHRscHdod28ifQ.Pa9LhzBk1H75KBMwBngDjA";
+
+// create map container
 const map = new mapboxgl.Map({
   container: "my-map", // map container ID
-  style: "mapbox://styles/jessicahuang/cmle4jgcc00dv01qqd84hg94o", // style URL
+  style: "mapbox://styles/jessicahuang/cmle4jgcc00dv01qqd84hg94o", // add my own style URL
   center: [-79.38718, 43.658], // starting position [lng, lat]
   zoom: 13, // starting zoom level,
   // pitch: 30, // tilt (0 = flat, 60 = nice 3D),
-  bearing: -15, // rotate map a bit (optional),
+  bearing: -15, // rotate map to upright position
 });
 
 map.on("load", () => {
-  // Add a data source containing GeoJSON data
+  // Add cafe feature data source
   map.addSource("cafe-data", {
     type: "geojson",
     data: "https://raw.githubusercontent.com/JessicaCHuang26/Lab-2-Webmap/main/cafe-point.geojson",
   });
 
-  // Load an image from an external URL.
+  // Load image for cafe feature symbology
   map.loadImage(
     "https://raw.githubusercontent.com/JessicaCHuang26/Lab-2-Webmap/main/coffee1.webp",
     (error, image) => {
       if (error) throw error;
 
-      // Add the image to the map style.
-      map.addImage("coffee", image);
+      map.addImage("coffee", image); // add image to map
 
+      //add cafe feature and its symbology to map
       map.addLayer({
         id: "cafe-point",
         type: "symbol",
         source: "cafe-data",
         layout: {
-          "icon-image": "coffee", // reference the image
+          "icon-image": "coffee",
           "icon-size": 0.15,
-          "icon-allow-overlap": true,
+          "icon-allow-overlap": true, // show all icon to ensure no hidden icon when overlapped
           "icon-ignore-placement": true,
         },
       });
@@ -67,7 +70,7 @@ map.on("load", () => {
     },
     paint: {
       "text-color": "rgb(53, 53, 173)",
-      "text-halo-color": "#ffffff", // white outline so text is readable
+      "text-halo-color": "#ffffff", //
       "text-halo-width": 1,
     },
   });
@@ -116,7 +119,7 @@ map.on("load", () => {
     },
     paint: {
       "text-color": "#090202",
-      "text-halo-color": "#ffffff", // white outline so text is readable
+      "text-halo-color": "#ffffff",
       "text-halo-width": 1,
     },
   });
