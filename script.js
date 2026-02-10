@@ -10,22 +10,34 @@ const map = new mapboxgl.Map({
 });
 
 map.on("load", () => {
-  // Load an image from an external URL.
-  map.loadImage(
-    "https://i.pinimg.com/originals/f0/4b/a9/f04ba908d1744c429505ac5239c35e63.gif",
-    (error, image) => {
-      if (error) throw error;
-
-      // Add the image to the map style.
-      map.addImage("coffee", image);
-    },
-  );
-
   // Add a data source containing GeoJSON data
   map.addSource("cafe-data", {
     type: "geojson",
     data: "https://raw.githubusercontent.com/JessicaCHuang26/Lab-2-Webmap/main/cafe-point.geojson",
   });
+
+  // Load an image from an external URL.
+  map.loadImage(
+    "https://raw.githubusercontent.com/JessicaCHuang26/Lab-2-Webmap/main/coffee1.webp",
+    (error, image) => {
+      if (error) throw error;
+
+      // Add the image to the map style.
+      map.addImage("coffee", image);
+
+      map.addLayer({
+        id: "cafe-point",
+        type: "symbol",
+        source: "cafe-data",
+        layout: {
+          "icon-image": "coffee", // reference the image
+          "icon-size": 0.15,
+          "icon-allow-overlap": true,
+          "icon-ignore-placement": true,
+        },
+      });
+    },
+  );
 
   // Visualize data layer on map
   // map.addLayer({
@@ -39,15 +51,6 @@ map.on("load", () => {
   //     "circle-stroke-width": 3,
   //   },
   // });
-  map.addLayer({
-    id: "cafe-point",
-    type: "symbol",
-    source: "cafe-data",
-    layout: {
-      "icon-image": "coffee", // reference the image
-      "icon-size": 0.25,
-    },
-  });
 
   map.addLayer({
     id: "cafe-label",
@@ -59,6 +62,8 @@ map.on("load", () => {
       "text-offset": [0, 1.2], // move text above the dot
       "text-anchor": "top",
       "text-font": ["Open Sans Bold"],
+      "text-allow-overlap": true, // show all labels
+      "text-ignore-placement": true,
     },
     paint: {
       "text-color": "rgb(53, 53, 173)",
