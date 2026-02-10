@@ -8,7 +8,7 @@ const map = new mapboxgl.Map({
   style: "mapbox://styles/jessicahuang/cmle4jgcc00dv01qqd84hg94o", // add my own style URL
   center: [-79.38718, 43.658], // starting position [lng, lat]
   zoom: 13, // starting zoom level,
-  // pitch: 30, // tilt (0 = flat, 60 = nice 3D),
+  pitch: 15, // tilt (0 = flat, 60 = nice 3D),
   bearing: -15, // rotate map to upright position
 });
 
@@ -21,7 +21,7 @@ map.on("load", () => {
 
   // Load image for cafe feature symbology
   map.loadImage(
-    "https://raw.githubusercontent.com/JessicaCHuang26/Lab-2-Webmap/main/coffee1.webp",
+    "https://raw.githubusercontent.com/JessicaCHuang26/Lab-2-Webmap/main/coffee.webp",
     (error, image) => {
       if (error) throw error;
 
@@ -77,17 +77,26 @@ map.on("load", () => {
 
   map.on("click", "cafe-point", (e) => {
     const feature = e.features[0];
+    const coords = feature.geometry.coordinates.slice(); // slice avoids mutation bug
     const props = feature.properties;
 
-    new mapboxgl.Popup()
-      .setLngLat(feature.geometry.coordinates)
-      .setHTML(
-        `
-      <strong>${props.Name}</strong><br/>
-      ${props.Address}<br/>
-    `,
-      )
-      .addTo(map);
+    // fly to cafe first
+    map.flyTo({
+      center: coords,
+      zoom: 17,
+      pitch: 25,
+      bearing: -15,
+      speed: 1.2,
+      essential: true,
+    });
+
+    // wait until fly animation finishes
+    map.once("moveend", () => {
+      new mapboxgl.Popup({ offset: [0, -25] })
+        .setLngLat(coords)
+        .setHTML(`<strong>${props.Name}</strong><br/>${props.Address}`)
+        .addTo(map);
+    });
   });
 
   map.addSource("subway-data", {
