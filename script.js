@@ -89,7 +89,7 @@ map.on("load", () => {
 
   map.addSource("subway-data", {
     type: "geojson",
-    data: "https://raw.githubusercontent.com/JessicaCHuang26/Lab-2-Webmap/main/TTC-Near-UofT-Campus.geojson",
+    data: "https://raw.githubusercontent.com/JessicaCHuang26/Lab-2-Webmap/main/TTC-Near_Campus.geojson",
   });
   // Visualize data layer on map
   map.addLayer({
